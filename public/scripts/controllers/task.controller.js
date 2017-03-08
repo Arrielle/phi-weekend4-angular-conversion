@@ -1,20 +1,13 @@
-myApp.controller('TaskController', ['$http', function($http){
+myApp.controller('TaskController', ['$http', 'TaskFactory', function($http, TaskFactory){ //first task factory is a DEPENDENCY and relates to task.factory.js second one is being passed in as a 'random' perameter
   console.log('The task controller was created');
   var self = this;
   self.newTask = {};
   self.taskList = [];
+  self.someThingToGoOnTheView = TaskFactory.testProperty;
+  self.someRandomArray = TaskFactory.testArray;
+  self.taskList = TaskFactory.allTasks;
 
-  getTasks();
 
-  function getTasks() {
-    $http({ //this is like our AJAX call
-      method: 'GET',
-      url: '/tasks'
-    }).then(function(response){
-      console.log(response.data); //here is our array of objects
-      self.taskList = response.data;
-    });//ends .then
-  } //ends getTasks function
 
   self.addTask = function addTask() { //if I want to call it in the index, I need to add it to self
     $http({
@@ -22,7 +15,7 @@ myApp.controller('TaskController', ['$http', function($http){
       url: '/tasks',
       data: self.newTask
     }).then(function(response){
-      getTasks();
+      TaskFactory.updateTasks();
       self.newTask = {};
       console.log('was clicked');
     });//ends.then
@@ -34,7 +27,7 @@ self.deleteTask = function(taskId){
     method: 'DELETE',
     url: '/tasks/' + taskId
   }).then(function(response){
-    getTasks();
+    TaskFactory.updateTasks();
   });
 }//ends deleteTask function
 
@@ -45,7 +38,7 @@ self.completeTask = function(taskId){
     method: 'PUT',
     url: '/tasks/' + taskId
   }).then(function(response){
-    getTasks();
+    TaskFactory.updateTasks();
   });
 }//ends deleteTask function
 //
