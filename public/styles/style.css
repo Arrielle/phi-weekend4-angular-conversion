@@ -3,5 +3,126 @@
 }*/
 
 .complete {
-  color: tomato;
+  background-color: #333;
+  color: white;
+}
+
+.active {
+  color: teal;
+}
+
+#newTaskInput {
+  text-align: center;
+  padding: 40px;
+  background-color: lightgrey;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: 10px;
+}
+
+#homeContainer {
+  text-align: center;
+  color: #333;
+}
+
+input{
+  height: 30px;
+  width: 80%;
+  border: none;
+  border-radius: 8px;
+}
+
+#submit{
+  background-color: teal;
+  width: 15%;
+  color: white;
+  height: 30px;
+  border: none;
+}
+
+#tableDiv{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+table{
+  margin-top: 30px;
+  width: 100%;
+  radius: 8px;
+}
+
+tr:first-child {
+  background-color: teal;
+  color: white;
+}
+
+tr:first-child:hover {
+  background-color: teal;
+}
+
+tr:hover {
+  background-color: #333;
+  color: white;
+}
+
+tr {
+  height: 35px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+tr:nth-child(even){
+  background-color: light-grey;
+}
+
+button {
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+}
+
+.button {
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+}
+
+#header {
+  padding: 40px;
+  background-color: teal;
+  text-align: center;
+  color: white;
+}
+
+.container {
+  padding-left: 60px;
+}
+
+li {
+  list-style-type: none;
+}
+
+#nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+#nav li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+background-color: #666;
+border-radius: 0px;
 }

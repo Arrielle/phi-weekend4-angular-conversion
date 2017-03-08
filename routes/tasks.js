@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
       res.sendStatus(500);
     }else{
       // SELECT * FROM task;
-      client.query('SELECT * FROM task;', function(err, result) {
+      client.query('SELECT * FROM task ORDER BY status;', function(err, result) {
         done(); // close the connection db
 
         if(err){
@@ -61,6 +61,52 @@ router.post('/', function(req, res) {
       });
     }
   });
-});
+});//router post is complete
+
+router.delete('/:id', function(req, res){
+  var taskToDeleteId = req.params.id;
+  console.log('hit delete route');
+  console.log('here is the id to delete ->', taskToDeleteId);
+  pool.connect(function(err, client, done){
+    if(err){
+      console.log(err);
+      res.sendStatus(500);
+    }else{
+      client.query('DELETE FROM task WHERE id = $1;',
+        [taskToDeleteId], function(err, result) {
+          done();
+          if(err){
+            console.log(err);
+            res.sendStatus(500); // the world exploded
+          }else{
+            res.sendStatus(200);
+          }
+      });
+    }
+  });//ends pool.connect
+});//router delete is done
+
+router.put('/:id', function(req, res){
+  var taskToCompleteId = req.params.id;
+  console.log('hit complete route');
+  console.log('here is the id to delete ->', taskToCompleteId);
+  pool.connect(function(err, client, done){
+    if(err){
+      console.log(err);
+      res.sendStatus(500);
+    }else{
+      client.query('UPDATE task SET status = TRUE WHERE id = $1;',
+        [taskToCompleteId], function(err, result) {
+          done();
+          if(err){
+            console.log(err);
+            res.sendStatus(500); // the world exploded
+          }else{
+            res.sendStatus(200);
+          }
+      });
+    }
+  });//ends pool.connect
+});//router delete is done
 
 module.exports = router;
