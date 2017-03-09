@@ -1,7 +1,7 @@
-myApp.controller('TaskController', ['$http', 'TaskFactory', function($http, TaskFactory){ //first task factory is a DEPENDENCY and relates to task.factory.js second one is being passed in as a 'random' perameter
+myApp.controller('TaskController', ['TaskFactory', function(TaskFactory){ //first task factory is a DEPENDENCY and relates to task.factory.js second one is being passed in as a 'random' perameter
   console.log('The task controller was created');
   var self = this;
-  // self.newTask = {};
+  self.newTask = {};
   self.taskList = [];
   self.someThingToGoOnTheView = TaskFactory.testProperty;
   self.someRandomArray = TaskFactory.testArray;
